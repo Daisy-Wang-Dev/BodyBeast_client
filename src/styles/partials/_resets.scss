@@ -1,3 +1,5 @@
+@use "./variables" as *;
+
 *,
 *::before,
 *::after {
@@ -13,4 +15,13 @@ html {
   font-size: 62.5%;
   max-width: 100%;
   overflow-x: hidden;
+}
+
+body {
+  font-size: 1.6rem;
+  background-color: $background-color;
+}
+
+a {
+  text-decoration: none;
 }
