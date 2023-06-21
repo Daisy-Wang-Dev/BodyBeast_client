@@ -11,6 +11,9 @@ function App() {
           <Routes>
             <Route path="/" element={<HomePage/>}/>
             <Route path="/routines" element={<Routines/>}/>
+            <Route path="/routines/:routineId"/>
+
+
           </Routes>
         <MenuBar/>
       </BrowserRouter>
