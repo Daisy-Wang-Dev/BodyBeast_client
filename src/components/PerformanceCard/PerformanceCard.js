@@ -9,34 +9,35 @@ import {
 } from "recharts";
 
 const PerformanceCard = ({ exercise }) => {
+    const {exercise_name, volume_data} = exercise;
   // Mock data for bicep curls 
-  const volume_data = [
-    {
-      total_volume: 360,
-      created_at: "2023-06-20",
-    },
-    {
-      total_volume: 360,
-      created_at: "2023-06-22",
-    },
-    {
-      total_volume: 370,
-      created_at: "2023-06-24",
-    },
-    {
-      total_volume: 376,
-      created_at: "2023-06-28",
-    },
-    {
-      total_volume: 376,
-      created_at: "2023-06-30",
-    },
-  ];
+//   const volume_data = [
+//     {
+//       total_volume: 360,
+//       created_at: "2023-06-20",
+//     },
+//     {
+//       total_volume: 360,
+//       created_at: "2023-06-22",
+//     },
+//     {
+//       total_volume: 370,
+//       created_at: "2023-06-24",
+//     },
+//     {
+//       total_volume: 376,
+//       created_at: "2023-06-28",
+//     },
+//     {
+//       total_volume: 376,
+//       created_at: "2023-06-30",
+//     },
+//   ];
 
   return (
     <article className="performance">
       <div className="performance__header">
-        <h2 className="performance__name">Bicep Curls</h2>
+        <h2 className="performance__name">{exercise_name}</h2>
         <h2 className="performance_metric">Volume</h2>
       </div>
       <ResponsiveContainer width="100%" height="90%">
