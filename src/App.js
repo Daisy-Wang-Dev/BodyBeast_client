@@ -3,6 +3,7 @@ import "./App.scss";
 import MenuBar from "./components/MenuBar/MenuBar";
 import HomePage from "./pages/HomePage/HomePage";
 import Routines from "./pages/Routines/Routines";
+import RoutineDetails from "./pages/RoutineDetails/RoutineDetails";
 
 function App() {
   return (
@@ -11,7 +12,7 @@ function App() {
           <Routes>
             <Route path="/" element={<HomePage/>}/>
             <Route path="/routines" element={<Routines/>}/>
-            <Route path="/routines/:routineId"/>
+            <Route path="/routines/:routineId" element={<RoutineDetails/>}/>
 
 
           </Routes>

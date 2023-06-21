@@ -6,7 +6,9 @@ const HomePage = () => {
   return (
     <>
       <Header />
-      <PerformanceStat />
+      <main>
+        <PerformanceStat />
+      </main>
     </>
   );
 };
