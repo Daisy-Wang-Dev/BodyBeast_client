@@ -10,7 +10,7 @@ const PerformanceStat = () => {
       const response = await axios.get(
         process.env.REACT_APP_API_URL + "/user/1/exercises"
       );
-      console.log(response);
+    //   console.log(response);
       setExerciseData(response.data);
     } catch (err) {
       console.log(`Error: ${err.message}`);
