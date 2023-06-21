@@ -11,7 +11,6 @@ const RoutineList = () => {
       const response = await axios.get(
         process.env.REACT_APP_API_URL + "/user/1/routine"
       );
-      console.log(response.data);
       setRoutines(response.data);
     } catch (err) {
       console.log(`Error: ${err.message}`);
