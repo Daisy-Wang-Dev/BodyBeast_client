@@ -1,0 +1,29 @@
+@use "../../styles/partials/typography";
+@use "../../styles/partials/variables" as *;
+
+.menu {
+  background-color: $menu-background-color;
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem 1.6rem;
+  &__link {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  &__icon {
+    height: 3rem;
+    width: 3rem;
+    padding-bottom: 0.5rem;
+    &--active {
+        filter: brightness(0) invert(1);
+    }
+  }
+  &__info {
+    color: $primary-color-1;
+    &--active {
+      color: $primary-color-2;
+    }
+  }
+}
