@@ -1,16 +1,15 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.scss";
 import MenuBar from "./components/MenuBar/MenuBar";
+import HomePage from "./pages/HomePage/HomePage";
 
 function App() {
   return (
     <div className="App">
       <BrowserRouter>
-        <main>
           <Routes>
-            <Route path="/" />
+            <Route path="/" element={<HomePage/>}/>
           </Routes>
-        </main>
         <MenuBar/>
       </BrowserRouter>
     </div>
