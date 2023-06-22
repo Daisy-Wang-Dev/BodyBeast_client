@@ -4,7 +4,6 @@ import "./RoutineDetails.scss";
 
 const RoutineDetails = () => {
   const { routineId } = useParams();
-  // console.log(routineId);
 
   return (
     <main>
