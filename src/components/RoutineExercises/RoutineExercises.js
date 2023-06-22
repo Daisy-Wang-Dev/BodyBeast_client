@@ -2,6 +2,7 @@ import "./RoutineExercises.scss";
 import RemoveIcon from "../../assets/icons/remove.svg";
 import CompleteIcon from "../../assets/icons/complete.svg";
 import AddIcon from "../../assets/icons/add.svg";
+import ExerciseCard from "../ExerciseCard.js/ExerciseCard";
 import { useState } from "react";
 
 const RoutineExercises = () => {
@@ -38,7 +39,7 @@ const RoutineExercises = () => {
           <h3 className="training__add">+ EXERCISE</h3>
         </div>
         {/* Need to map all exercises and onchange handler*/}
-        <article className="training__exercise">
+        {/* <article className="training__exercise">
           <input
             className="training__name"
             type="text"
@@ -97,7 +98,8 @@ const RoutineExercises = () => {
               );
             })}
           </div>
-        </article>
+        </article> */}
+        <ExerciseCard />
         <button type="submit">SMASHED</button>
       </form>
     </section>

@@ -58,35 +58,4 @@ input {
     width: 5.2rem;
     text-align: center;
   }
-  &__input-fields {
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-    border-radius: 1rem;
-    padding: 0.5rem 0;
-    &--active{
-        background-color: #9DC08B;
-    }
-  }
-  &__input {
-    width: 5.2rem;
-    border: none;
-    padding: 0.4rem;
-    border-radius: 0;
-    text-align: center;
-    &:focus {
-      outline: none;
-      border: 2px solid grey;
-    }
-  }
-  &__icon {
-    width: 5.2rem;
-    padding: 0 1.2rem;
-    text-align: center;
-  }
-}
-
-img {
-  width: 1.8rem;
-  height: 1.8rem;
 }
