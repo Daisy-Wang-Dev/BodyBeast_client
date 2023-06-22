@@ -5,6 +5,7 @@ input {
   border: none;
   padding: 0.8rem;
   border-radius: 2rem;
+  background-color: transparent;
   &:focus {
     outline: none;
     border: 2px solid $supporting-color;
@@ -62,6 +63,11 @@ input {
     display: flex;
     justify-content: space-between;
     width: 100%;
+    border-radius: 1rem;
+    padding: 0.5rem 0;
+    &--active{
+        background-color: #9DC08B;
+    }
   }
   &__input {
     width: 5.2rem;

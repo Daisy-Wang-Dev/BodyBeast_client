@@ -5,12 +5,18 @@ import AddIcon from "../../assets/icons/add.svg";
 import { useState } from "react";
 
 const RoutineExercises = () => {
-
+  // Add one more set
   const [counter, setCounter] = useState(1);
 
   const handleAddClick = () => {
     setCounter(counter + 1);
-    console.log(counter);
+  };
+
+  //Completed a set
+  const [isCompleted, setCompleted] = useState(false);
+
+  const handleCompleteClick = () => {
+    setCompleted(!isCompleted);
   };
 
   return (
@@ -42,9 +48,9 @@ const RoutineExercises = () => {
               <h4 className="training__input-header">remove</h4>
               <h4 className="training__input-header">add</h4>
             </div>
-            { Array.from(Array(counter)).map((count) => {
+            {Array.from(Array(counter)).map((count) => {
               return (
-                <div key={count} className="training__input-fields">
+                <div key={count} className={`training__input-fields ${isCompleted ? "training__input-fields--active" : ""}`}>
                   <input
                     className="training__input"
                     type="number"
@@ -56,7 +62,12 @@ const RoutineExercises = () => {
                     name="input"
                   />
                   <div className="training__icon">
-                    <img src={CompleteIcon} alt="Completed exercise" />
+                    <img
+                      onClick={handleCompleteClick}
+                      className="traning__completed"
+                      src={CompleteIcon}
+                      alt="Completed exercise"
+                    />
                   </div>
                   <div className="training__icon">
                     <img src={RemoveIcon} alt="Remove exercise" />
