@@ -5,18 +5,12 @@ import AddIcon from "../../assets/icons/add.svg";
 import { useState } from "react";
 
 const RoutineExercises = () => {
-  const [arr, setArr] = useState([]);
 
-  const addInput = () => {
-    setArr((s) => {
-      return [
-        ...s,
-        {
-          type: "number",
-          value: "",
-        },
-      ];
-    });
+  const [counter, setCounter] = useState(1);
+
+  const handleAddClick = () => {
+    setCounter(counter + 1);
+    console.log(counter);
   };
 
   return (
@@ -48,22 +42,9 @@ const RoutineExercises = () => {
               <h4 className="training__input-header">remove</h4>
               <h4 className="training__input-header">add</h4>
             </div>
-            <div className="training__input-fields">
-              <input className="training__input" type="number" name="input" />
-              <input className="training__input" type="number" name="input" />
-              <div className="training__icon">
-                <img src={CompleteIcon} alt="Completed exercise" />
-              </div>
-              <div className="training__icon">
-                <img src={RemoveIcon} alt="Remove exercise" />
-              </div>
-              <div className="training__icon">
-                <img onClick={addInput} src={AddIcon} alt="Remove exercise" />
-              </div>
-            </div>
-            {arr.map((element) => {
+            { Array.from(Array(counter)).map((count) => {
               return (
-                <div className="training__input-fields">
+                <div key={count} className="training__input-fields">
                   <input
                     className="training__input"
                     type="number"
@@ -82,7 +63,7 @@ const RoutineExercises = () => {
                   </div>
                   <div className="training__icon">
                     <img
-                      onClick={addInput}
+                      onClick={handleAddClick}
                       src={AddIcon}
                       alt="Remove exercise"
                     />
