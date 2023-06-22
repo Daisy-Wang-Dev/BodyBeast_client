@@ -1,6 +1,7 @@
 import "./RoutineExercises.scss";
 import RemoveIcon from "../../assets/icons/remove.svg";
 import CompleteIcon from "../../assets/icons/complete.svg";
+import AddIcon from "../../assets/icons/add.svg";
 
 const RoutineExercises = () => {
   return (
@@ -30,7 +31,8 @@ const RoutineExercises = () => {
               <h4 className="training__input-header">kg</h4>
               <h4 className="training__input-header">reps</h4>
               <h4 className="training__input-header">completed</h4>
-              <h4 className="training__input-header"></h4>
+              <h4 className="training__input-header">remove</h4>
+              <h4 className="training__input-header">add</h4>
             </div>
             <div className="training__input-fields">
               <input
@@ -51,8 +53,10 @@ const RoutineExercises = () => {
               <div className="training__icon">
                 <img src={RemoveIcon} alt="Remove exercise" />
               </div>
+              <div className="training__icon">
+                <img src={AddIcon} alt="Remove exercise" />
+              </div>
             </div>
-            <h3 className="training__add-set">+ SET</h3>
           </div>
         </article>
         <button type="submit">SMASHED</button>
