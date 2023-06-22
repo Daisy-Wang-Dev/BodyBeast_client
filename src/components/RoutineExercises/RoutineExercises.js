@@ -19,6 +19,11 @@ const RoutineExercises = () => {
     setCompleted(!isCompleted);
   };
 
+  //Remove a set
+  const handleRemoveClick = () => {
+    setCounter(counter - 1);
+  };
+
   return (
     <section className="training">
       <form>
@@ -50,7 +55,12 @@ const RoutineExercises = () => {
             </div>
             {Array.from(Array(counter)).map((count) => {
               return (
-                <div key={count} className={`training__input-fields ${isCompleted ? "training__input-fields--active" : ""}`}>
+                <div
+                  key={count}
+                  className={`training__input-fields ${
+                    isCompleted ? "training__input-fields--active" : ""
+                  }`}
+                >
                   <input
                     className="training__input"
                     type="number"
@@ -70,7 +80,11 @@ const RoutineExercises = () => {
                     />
                   </div>
                   <div className="training__icon">
-                    <img src={RemoveIcon} alt="Remove exercise" />
+                    <img
+                      onClick={handleRemoveClick}
+                      src={RemoveIcon}
+                      alt="Remove exercise"
+                    />
                   </div>
                   <div className="training__icon">
                     <img

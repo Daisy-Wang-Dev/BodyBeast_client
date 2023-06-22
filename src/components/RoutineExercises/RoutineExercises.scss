@@ -52,7 +52,6 @@ input {
   &__input-headers {
     display: flex;
     justify-content: space-between;
-    padding-left: 0.8rem;
     padding-bottom: 1rem;
   }
   &__input-header {
@@ -74,6 +73,7 @@ input {
     border: none;
     padding: 0.4rem;
     border-radius: 0;
+    text-align: center;
     &:focus {
       outline: none;
       border: 2px solid grey;
