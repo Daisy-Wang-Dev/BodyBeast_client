@@ -2,9 +2,9 @@ import RemoveIcon from "../../assets/icons/remove.svg";
 import CompleteIcon from "../../assets/icons/complete.svg";
 import AddIcon from "../../assets/icons/add.svg";
 import { useState } from "react";
-import "./ExerciseCard.scss";
+import "./NewExerciseCard.scss";
 
-const ExerciseCard = ({ exercise }) => {
+const NewExerciseCard = () => {
   //   // Add one more set
   const [counter, setCounter] = useState(1);
 
@@ -24,7 +24,7 @@ const ExerciseCard = ({ exercise }) => {
     setCounter(counter - 1);
   };
 
-  const [trainingName, setTrainingName] = useState(exercise);
+  const [trainingName, setTrainingName] = useState("");
   const handletrainingNameChange = (e) => {
     setTrainingName(e.target.value);
   };
@@ -90,4 +90,4 @@ const ExerciseCard = ({ exercise }) => {
   );
 };
 
-export default ExerciseCard;
+export default NewExerciseCard;
