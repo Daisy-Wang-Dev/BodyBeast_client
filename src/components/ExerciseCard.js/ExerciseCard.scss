@@ -3,6 +3,9 @@
 
 
 .training{
+    &__exercise{
+        margin-bottom: 1.6rem;
+    }
     &__input-fields {
         display: flex;
         justify-content: space-between;

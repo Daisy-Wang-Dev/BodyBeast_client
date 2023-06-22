@@ -8,7 +8,7 @@ const RoutineDetails = () => {
 
   return (
     <main>
-      <RoutineExercises />
+      <RoutineExercises routineId={routineId}/>
     </main>
   );
 };

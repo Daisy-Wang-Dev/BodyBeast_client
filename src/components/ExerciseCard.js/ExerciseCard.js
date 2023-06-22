@@ -4,7 +4,7 @@ import AddIcon from "../../assets/icons/add.svg";
 import { useState } from "react";
 import "./ExerciseCard.scss";
 
-const ExerciseCard = () => {
+const ExerciseCard = ({exercise}) => {
   // Add one more set
   const [counter, setCounter] = useState(1);
 
@@ -13,11 +13,14 @@ const ExerciseCard = () => {
   };
 
   //Completed a set
-  const [isCompleted, setCompleted] = useState(false);
+//   const [isCompletedRow, setCompletedRow] = useState(false);
 
-  const handleCompleteClick = () => {
-    setCompleted(!isCompleted);
-  };
+//   const handleCompleteClick = (index) => {
+  
+//     setCompletedRow(!isCompletedRow);
+ 
+   
+//   };
 
   //Remove a set
   const handleRemoveClick = () => {
@@ -30,7 +33,7 @@ const ExerciseCard = () => {
         className="training__name"
         type="text"
         name="name"
-        value="lorem ipsum"
+        value={exercise}
       />
       <div className="training__inputs">
         <div className="training__input-headers">
@@ -40,20 +43,22 @@ const ExerciseCard = () => {
           <h4 className="training__input-header">remove</h4>
           <h4 className="training__input-header">add</h4>
         </div>
-        {Array.from(Array(counter)).map((count) => {
+        {Array.from(Array(counter).keys()).map((count, index) => {
           return (
             <div
-              key={count}
-              className={`training__input-fields ${
-                isCompleted ? "training__input-fields--active" : ""
-              }`}
+              key={index}
+              className={`training__input-fields    
+               `}
             >
+                 {/* ${
+                isCompletedRow ? "training__input-fields--active" : ""
+              } */}
               <input className="training__input" type="number" name="input" />
               <input className="training__input" type="number" name="input" />
               <div className="training__icon">
                 <img
-                  onClick={handleCompleteClick}
-                  className="traning__completed"
+                //   onClick={handleCompleteClick(index)}
+                  className="training__completed"
                   src={CompleteIcon}
                   alt="Completed exercise"
                 />

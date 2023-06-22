@@ -1,29 +1,31 @@
 import "./RoutineExercises.scss";
-import RemoveIcon from "../../assets/icons/remove.svg";
-import CompleteIcon from "../../assets/icons/complete.svg";
-import AddIcon from "../../assets/icons/add.svg";
 import ExerciseCard from "../ExerciseCard.js/ExerciseCard";
-import { useState } from "react";
+import axios from "axios";
+import { useEffect, useState } from "react";
 
-const RoutineExercises = () => {
-  // Add one more set
-  const [counter, setCounter] = useState(1);
+const RoutineExercises = ({ routineId }) => {
+  const [routineDetails, setRoutineDetails] = useState(null);
 
-  const handleAddClick = () => {
-    setCounter(counter + 1);
+  const getRoutineDetails = async () => {
+    try {
+      const response = await axios.get(
+        process.env.REACT_APP_API_URL + `/user/1/routine/${routineId}/exercises`
+      );
+      setRoutineDetails(response.data);
+    } catch (err) {
+      console.log(`Error: ${err.message}`);
+    }
   };
 
-  //Completed a set
-  const [isCompleted, setCompleted] = useState(false);
+  useEffect(() => {
+    getRoutineDetails();
+  }, []);
 
-  const handleCompleteClick = () => {
-    setCompleted(!isCompleted);
-  };
+  if (!routineDetails) {
+    return <h1 className="loading">Data Loading</h1>;
+  }
 
-  //Remove a set
-  const handleRemoveClick = () => {
-    setCounter(counter - 1);
-  };
+  const { name, exercises } = routineDetails;
 
   return (
     <section className="training">
@@ -34,11 +36,14 @@ const RoutineExercises = () => {
             type="text"
             id="title"
             name="title"
-            value="TRAINING"
+            value={name}
           />
           <h3 className="training__add">+ EXERCISE</h3>
         </div>
         {/* Need to map all exercises and onchange handler*/}
+        {exercises.map((exercise) => (
+          <ExerciseCard exercise={exercise} />
+        ))}
         {/* <article className="training__exercise">
           <input
             className="training__name"
@@ -99,7 +104,7 @@ const RoutineExercises = () => {
             })}
           </div>
         </article> */}
-        <ExerciseCard />
+        {/* <ExerciseCard /> */}
         <button type="submit">SMASHED</button>
       </form>
     </section>
