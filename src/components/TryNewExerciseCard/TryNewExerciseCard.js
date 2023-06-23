@@ -2,9 +2,9 @@ import RemoveIcon from "../../assets/icons/remove.svg";
 import CompleteIcon from "../../assets/icons/complete.svg";
 import AddIcon from "../../assets/icons/add.svg";
 import { useState } from "react";
-import "./ExerciseCard.scss";
+import "./TryNewExerciseCard.scss";
 
-const ExerciseCard = ({ exercise }) => {
+const TryNewExerciseCard = () => {
   //   // Add one more set
   const [counter, setCounter] = useState(1);
 
@@ -24,8 +24,7 @@ const ExerciseCard = ({ exercise }) => {
     setCounter(counter - 1);
   };
 
- //Handle input values
-  const [trainingName, setTrainingName] = useState(exercise);
+  const [trainingName, setTrainingName] = useState("");
   const handletrainingNameChange = (e) => {
     setTrainingName(e.target.value);
   };
@@ -57,8 +56,8 @@ const ExerciseCard = ({ exercise }) => {
               }  
                `}
             >
-              <input className="training__input" type="number" name="weight-input" />
-              <input className="training__input" type="number" name="rep-input" />
+              <input className="training__input" type="number" name="input" />
+              <input className="training__input" type="number" name="input" />
               <div className="training__icon">
                 <img
                   onClick={() => {
@@ -91,4 +90,4 @@ const ExerciseCard = ({ exercise }) => {
   );
 };
 
-export default ExerciseCard;
+export default TryNewExerciseCard;

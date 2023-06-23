@@ -1,0 +1,49 @@
+@use "../../styles/partials/typography";
+@use "../../styles/partials/variables" as *;
+
+.training {
+  &__exercise {
+    margin-bottom: 1.6rem;
+    width: 100%;
+    min-height: 12rem;
+  }
+  &__input-fields {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    border-radius: 1rem;
+    padding: 0.5rem 0;
+    margin-bottom: 0.5rem;
+    &--active {
+      background-color: #e5f9db;
+    }
+  }
+  &__input {
+    width: 5.2rem;
+    border: none;
+    padding: 0.4rem;
+    border-radius: 2rem;
+    text-align: center;
+    background-color: transparent;
+    &:focus {
+      outline: none;
+      border: 2px solid grey;
+    }
+   
+  }
+  &__icon {
+    width: 5.2rem;
+    padding: 0 1.2rem;
+    text-align: center;
+  }
+  &__body-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+img {
+  width: 1.8rem;
+  height: 1.8rem;
+}

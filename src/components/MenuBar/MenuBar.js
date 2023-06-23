@@ -28,7 +28,7 @@ const MenuBar = () => {
       </Link>
       <Link to="/routines" className="menu__link">
         <img className={`menu__icon ${
-              location.pathname === "/routines" || location.pathname === "/routine/:routineId" ? "menu__icon--active" : ""
+              location.pathname === "/routines" ? "menu__icon--active" : ""
             }`} src={MuscleIcon} alt="Train" />
         <h3 className={`menu__info ${
               location.pathname === "/routines" ? "menu__info--active" : ""
