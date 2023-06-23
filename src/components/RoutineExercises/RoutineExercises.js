@@ -3,6 +3,7 @@ import ExerciseCard from "../ExerciseCard.js/ExerciseCard";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import NewExerciseCard from "../NewExerciseCard/NewExerciseCard";
+import { Link } from "react-router-dom";
 
 const RoutineExercises = ({ routineId }) => {
   const [routineDetails, setRoutineDetails] = useState(null);
@@ -59,9 +60,12 @@ const RoutineExercises = ({ routineId }) => {
           {Array.from(Array(exerciseCounter).keys()).map((count, index)=>
             <NewExerciseCard key={index}/>
           )}
-          <button className="training__submit-btn" type="submit">
+          <button className="training__btn training__btn--complete" type="submit">
             SMASHED
           </button>
+          <Link to="/routines" className="training__btn training__btn--cancel" type="submit">
+            CANCEL
+          </Link>
         </div>
       </form>
     </section>

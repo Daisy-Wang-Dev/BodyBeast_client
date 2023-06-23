@@ -59,4 +59,21 @@ input {
     width: 5.2rem;
     text-align: center;
   }
+  &__btn {
+    color: $primary-color-2;
+    border-radius: 1rem;
+    border: none;
+    padding: 1rem 3.2rem;
+    width: 80%;
+    margin-bottom: 1rem;
+    &--complete {
+      background-color: #fa374e;
+      color: $primary-color-2;
+    }
+    &--cancel{
+        background-color: $primary-color-2;
+        color: #999;
+        text-align: center;
+    }
+  }
 }
