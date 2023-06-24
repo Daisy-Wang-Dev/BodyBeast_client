@@ -15,6 +15,11 @@ const RoutineExercises = ({ routineId }) => {
   const [routineDetails, setRoutineDetails] = useState(null);
   const [routineName, setRoutineName] = useState("");
   const [exercises, setExercises] = useState([]);
+  const [counter, setCounter] = useState(0);
+
+  const handleAddClick = () => {
+    setCounter(counter + 1);
+  };
 
   const getRoutineDetails = async () => {
     try {
@@ -59,8 +64,8 @@ const RoutineExercises = ({ routineId }) => {
             exercise_name: exercise,
             sets: [{ weight: "", reps: "" }],
           })),
-          newExercises: [].map((c) => ({
-            name: "",
+          newExercises: Array.from(Array(counter).keys()).map((c) => ({
+            exercise_name: "",
             sets: [{ weight: "", reps: "" }],
           })),
         }}
@@ -83,7 +88,7 @@ const RoutineExercises = ({ routineId }) => {
               <FieldArray name="exercises">
                 {() => (
                   <>
-                    {values.exercises.map((exercise, index) => (
+                    {values.exercises.map((_exercise, index) => (
                       // <ExerciseCard
                       //   key={index}
                       //   index={index}
@@ -165,12 +170,12 @@ const RoutineExercises = ({ routineId }) => {
                 {({ push }) => (
                   <>
                     {values.newExercises.map((new_exercise, index) => (
-                      <NewExerciseCard key={index} index={index} />
+                      <NewExerciseCard key={index} index={index} values={values} />
                     ))}
                     <h3
                       className="training__add"
                       onClick={() =>
-                        push({ name: "", sets: [{ weight: "", reps: "" }] })
+                        push({ exercise_name: "", sets: [{ weight: "", reps: "" }] })
                       }
                     >
                       + EXERCISE
