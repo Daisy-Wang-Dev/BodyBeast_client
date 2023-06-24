@@ -10,6 +10,7 @@
   &__input-fields {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     width: 100%;
     border-radius: 1rem;
     padding: 0.5rem 0;
@@ -35,6 +36,11 @@
     width: 5.2rem;
     padding: 0 1.2rem;
     text-align: center;
+  }
+  &__checkbox{
+   transform: scale(1.3);
+   position: relative;
+   
   }
   &__body-container {
     display: flex;

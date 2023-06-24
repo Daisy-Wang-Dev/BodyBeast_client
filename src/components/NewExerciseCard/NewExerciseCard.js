@@ -4,6 +4,9 @@ import AddIcon from "../../assets/icons/add.svg";
 import { useState } from "react";
 import "./NewExerciseCard.scss";
 import { Field, ErrorMessage, FieldArray } from "formik";
+import * as React from 'react';
+import Checkbox from '@mui/material/Checkbox';
+
 
 const NewExerciseCard = ({ index, values }) => {
   //Completed a set
@@ -41,7 +44,7 @@ const NewExerciseCard = ({ index, values }) => {
               <div
                 key={idx}
                 className={`training__input-fields ${
-                  isCompletedRow[index] ? "training__input-fields--active" : ""
+                  isCompletedRow[idx] ? "training__input-fields--active" : ""
                 }  
                `}
               >
@@ -66,13 +69,9 @@ const NewExerciseCard = ({ index, values }) => {
                   className="field-error"
                 />
                 <div className="training__icon">
-                  <img
-                    src={CompleteIcon}
-                    alt="Completed exercise"
-                    onClick={() => {
-                      handleCompleteClick(index);
-                    }}
-                  />
+                  <Checkbox className="training__checkbox" color="success" onClick={() => {
+                      handleCompleteClick(idx);
+                    }}/>
                 </div>
                 <div className="training__icon">
                   <img
