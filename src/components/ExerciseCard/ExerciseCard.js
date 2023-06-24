@@ -9,8 +9,8 @@ const ExerciseCard = ({ index, values }) => {
   //   //Completed a set
   const [isCompletedRow, setCompletedRow] = useState({});
 
-  const handleCompleteClick = (index) => {
-    setCompletedRow({ ...isCompletedRow, [index]: !isCompletedRow[index] });
+  const handleCompleteClick = (idx) => {
+    setCompletedRow({ ...isCompletedRow, [idx]: !isCompletedRow[idx] });
   };
 
   return (
@@ -40,7 +40,7 @@ const ExerciseCard = ({ index, values }) => {
               <div
                 key={idx}
                 className={`training__input-fields ${
-                  isCompletedRow[index] ? "training__input-fields--active" : ""
+                  isCompletedRow[idx] ? "training__input-fields--active" : ""
                 }  
              `}
               >
@@ -49,11 +49,22 @@ const ExerciseCard = ({ index, values }) => {
                   type="number"
                   name={`exercises.${index}.sets.${idx}.weight`}
                 />
+                <ErrorMessage
+                  name={`exercises.${index}.sets.${idx}.weight`}
+                  component="div"
+                  className="field-error"
+                />
                 <Field
                   className="training__input"
                   type="number"
                   name={`exercises.${index}.sets.${idx}.reps`}
                 />
+                <ErrorMessage
+                  name={`exercises.${index}.sets.${idx}.reps`}
+                  component="div"
+                  className="field-error"
+                />
+
                 <div className="training__icon">
                   <img
                     className="training__completed"
