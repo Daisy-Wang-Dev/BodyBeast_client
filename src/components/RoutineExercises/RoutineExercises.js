@@ -1,12 +1,10 @@
 import "./RoutineExercises.scss";
-import ExerciseCard from "../ExerciseCard/ExerciseCard";
+import ExerciseCard from "../ExerciseCard/ExerciseCard"
 import axios from "axios";
 import { useEffect, useState } from "react";
 import NewExerciseCard from "../NewExerciseCard/NewExerciseCard";
 import { Link } from "react-router-dom";
 import { Formik, Field, Form, ErrorMessage, FieldArray } from "formik";
-import TryNewExerciseCard from "../../components/TryNewExerciseCard/TryNewExerciseCard";
-import TryExerciseCard from "../../components/TryExerciseCard/TryExerciseCard";
 import RemoveIcon from "../../assets/icons/remove.svg";
 import CompleteIcon from "../../assets/icons/complete.svg";
 import AddIcon from "../../assets/icons/add.svg";
@@ -15,11 +13,6 @@ const RoutineExercises = ({ routineId }) => {
   const [routineDetails, setRoutineDetails] = useState(null);
   const [routineName, setRoutineName] = useState("");
   const [exercises, setExercises] = useState([]);
-  const [counter, setCounter] = useState(0);
-
-  const handleAddClick = () => {
-    setCounter(counter + 1);
-  };
 
   const getRoutineDetails = async () => {
     try {
@@ -64,7 +57,7 @@ const RoutineExercises = ({ routineId }) => {
             exercise_name: exercise,
             sets: [{ weight: "", reps: "" }],
           })),
-          newExercises: Array.from(Array(counter).keys()).map((c) => ({
+          newExercises: [].map((c) => ({
             exercise_name: "",
             sets: [{ weight: "", reps: "" }],
           })),
@@ -86,13 +79,23 @@ const RoutineExercises = ({ routineId }) => {
             </div>
             <div className="training__body-container">
               <FieldArray name="exercises">
+                {()=>(
+                  <>
+                  {
+                    values.exercises.map((exercise,index)=>(
+                        <ExerciseCard key={index} index={index} values={values}/>
+                    ))
+                  }
+                  </>
+                )}
+              </FieldArray>
+              {/* <FieldArray name="exercises">
                 {() => (
                   <>
-                    {values.exercises.map((_exercise, index) => (
+                    {values.exercises.map((exercise, index) => (
                       // <ExerciseCard
                       //   key={index}
                       //   index={index}
-                      //   exercise={exercise}
                       // />
                       <article key={index} className="training__exercise">
                         <Field
@@ -165,7 +168,7 @@ const RoutineExercises = ({ routineId }) => {
                     ))}
                   </>
                 )}
-              </FieldArray>
+              </FieldArray> */}
               <FieldArray name="newExercises">
                 {({ push }) => (
                   <>

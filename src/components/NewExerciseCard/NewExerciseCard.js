@@ -50,10 +50,20 @@ const NewExerciseCard = ({ index, values }) => {
                   type="number"
                   name={`newExercises.${index}.sets.${idx}.weight`}
                 />
+                <ErrorMessage
+                  name={`newExercises.${index}.sets.${idx}.weight`}
+                  component="div"
+                  className="field-error"
+                />
                 <Field
                   className="training__input"
                   type="number"
                   name={`newExercises.${index}.sets.${idx}.reps`}
+                />
+                <ErrorMessage
+                  name={`newExercises.${index}.sets.${idx}.reps`}
+                  component="div"
+                  className="field-error"
                 />
                 <div className="training__icon">
                   <img

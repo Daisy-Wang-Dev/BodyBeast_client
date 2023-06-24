@@ -3,46 +3,28 @@ import CompleteIcon from "../../assets/icons/complete.svg";
 import AddIcon from "../../assets/icons/add.svg";
 import { useState } from "react";
 import "./ExerciseCard.scss";
-import { Formik, Field, ErrorMessage, FieldArray } from 'formik';
+import { Field, ErrorMessage, FieldArray } from "formik";
 
-const ExerciseCard = ({ index, exercise }) => {
-  //   // Add one more set
-//   const [counter, setCounter] = useState(1);
+const ExerciseCard = ({ index, values }) => {
+  //   //Completed a set
+  const [isCompletedRow, setCompletedRow] = useState({});
 
-//   const handleAddClick = () => {
-//     setCounter(counter + 1);
-//   };
-
-//   //Completed a set
-//   const [isCompletedRow, setCompletedRow] = useState({});
-
-//   const handleCompleteClick = (index) => {
-//     setCompletedRow({ ...isCompletedRow, [index]: !isCompletedRow[index] });
-//   };
-
-//   //Remove a set
-//   const handleRemoveClick = () => {
-//     setCounter(counter - 1);
-//   };
-
-//  //Handle input values
-//   const [trainingName, setTrainingName] = useState(exercise);
-//   const handletrainingNameChange = (e) => {
-//     setTrainingName(e.target.value);
-//   };
-console.log(index);
-console.log(exercise);
+  const handleCompleteClick = (index) => {
+    setCompletedRow({ ...isCompletedRow, [index]: !isCompletedRow[index] });
+  };
 
   return (
     <article className="training__exercise">
-      {/* Change to field */}
-      <input
+      <Field
         className="training__name"
-        type="text"
-        name={`${exercise}.${index}.exercise_name`}
+        name={`exercises.${index}.exercise_name`}
         placeholder="New Exercise"
-        // onChange={handletrainingNameChange}
-        // value={trainingName}
+        type="text"
+      />
+      <ErrorMessage
+        name={`exercises.${index}.exercise_name`}
+        component="div"
+        className="field-error"
       />
       <div className="training__inputs">
         <div className="training__input-headers">
@@ -52,44 +34,54 @@ console.log(exercise);
           <h4 className="training__input-header">remove</h4>
           <h4 className="training__input-header">add</h4>
         </div>
-        {/* {Array.from(Array(counter).keys()).map((count, index) => {
-          return (
-            <div
-              key={index}
-              className={`training__input-fields ${
-                isCompletedRow[index] ? "training__input-fields--active" : ""
-              }  
-               `}
-            >
-              <input className="training__input" type="number" name="weight-input" />
-              <input className="training__input" type="number" name="rep-input" />
-              <div className="training__icon">
-                <img
-                  onClick={() => {
-                    handleCompleteClick(index);
-                  }}
-                  className="training__completed"
-                  src={CompleteIcon}
-                  alt="Completed exercise"
+        <FieldArray name={`exercises.${index}.sets`}>
+          {({ remove, push }) =>
+            values.exercises[index].sets.map((_, idx) => (
+              <div
+                key={idx}
+                className={`training__input-fields ${
+                  isCompletedRow[index] ? "training__input-fields--active" : ""
+                }  
+             `}
+              >
+                <Field
+                  className="training__input"
+                  type="number"
+                  name={`exercises.${index}.sets.${idx}.weight`}
                 />
-              </div>
-              <div className="training__icon">
-                <img
-                  onClick={handleRemoveClick}
-                  src={RemoveIcon}
-                  alt="Remove exercise"
+                <Field
+                  className="training__input"
+                  type="number"
+                  name={`exercises.${index}.sets.${idx}.reps`}
                 />
+                <div className="training__icon">
+                  <img
+                    className="training__completed"
+                    src={CompleteIcon}
+                    alt="Completed exercise"
+                    onClick={() => {
+                      handleCompleteClick(index);
+                    }}
+                  />
+                </div>
+                <div className="training__icon">
+                  <img
+                    src={RemoveIcon}
+                    alt="Remove exercise"
+                    onClick={() => remove({ weight: "", reps: "" })}
+                  />
+                </div>
+                <div className="training__icon">
+                  <img
+                    src={AddIcon}
+                    alt="Remove exercise"
+                    onClick={() => push({ weight: "", reps: "" })}
+                  />
+                </div>
               </div>
-              <div className="training__icon">
-                <img
-                  onClick={handleAddClick}
-                  src={AddIcon}
-                  alt="Remove exercise"
-                />
-              </div>
-            </div> */}
-          {/* );
-        })} */}
+            ))
+          }
+        </FieldArray>
       </div>
     </article>
   );
