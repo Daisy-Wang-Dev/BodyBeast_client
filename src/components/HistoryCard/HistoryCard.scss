@@ -1,3 +1,17 @@
 @use "../../styles/partials/typography";
 @use "../../styles/partials/variables" as *;
 
+.history{
+    background-color: $primary-color-2;
+    padding: 1.6rem;
+    border-radius: 1rem;
+    box-shadow: 0 0.5rem 0.9rem -0.1rem rgba(196, 193, 193, 0.25);
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  &__icon{
+    width: 2.5rem;
+    height: 2.5rem;
+  }
+}
