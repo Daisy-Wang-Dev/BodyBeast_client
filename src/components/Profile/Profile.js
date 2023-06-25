@@ -11,10 +11,26 @@ const Profile = () => {
     dateOfBirth: "",
     mode: "",
   };
-  //   TODO: validation schema
+  const validationSchema = Yup.object().shape({
+    name: Yup.string().required("Name is required"),
+    username: Yup.string().required("username is required"),
+    email: Yup.string().email("Invalid email").required("Email is required"),
+    dateOfBirth: Yup.string()
+      .required("Date of Birth is required")
+      .matches(
+        /^\d{4}-\d{2}-\d{2}$/,
+        "Date of Birth must be in the format yyyy-mm-dd"
+      ),
+    mode: Yup.string()
+      .oneOf(["maintaining", "bulking", "cutting"])
+      .required("Mode is required"),
+    mode: Yup.string()
+      .oneOf(["maintaining", "bulking", "cutting"])
+      .required("Mode is required"),
+  });
   return (
     <section className="setting__profile">
-      <Formik initialValues={initialValues}>
+      <Formik initialValues={initialValues} validationSchema={validationSchema}>
         <Form className="setting__profile-form">
           <div className="setting__container">
             <label htmlFor="name">Name</label>
@@ -78,7 +94,12 @@ const Profile = () => {
 
           <div className="setting__container">
             <label htmlFor="mode">Mode</label>
-            <Field className="setting__input" component="select" id="mode" name="mode" >
+            <Field
+              className="setting__input"
+              component="select"
+              id="mode"
+              name="mode"
+            >
               <option value="">Select Mode</option>
               <option value="maintaining">Maintaining</option>
               <option value="bulking">Bulking</option>
@@ -90,8 +111,12 @@ const Profile = () => {
               component="div"
             ></ErrorMessage>
           </div>
-          <button type="submit">Update Profile</button>
-          <button type="button">Delete Account</button>
+          <button className="setting__btn setting__btn--update" type="submit">
+            Update Profile
+          </button>
+          <button className="setting__btn setting__btn--delete" type="button">
+            Delete Account
+          </button>
         </Form>
       </Formik>
     </section>
