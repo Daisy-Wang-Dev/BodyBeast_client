@@ -1,18 +1,47 @@
 import "./Profile.scss";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
+import axios from "axios";
 
 const Profile = () => {
+  const [userInfo, setUserInfo] = useState(null);
   const [name, setName] = useState("");
   const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [dateOfBirth, setDateOfBirth] = useState("");
+  const [mode, setMode] = useState("");
+
+  const getUserInfo = async () => {
+    try {
+        const response = await axios.get(process.env.REACT_APP_API_URL+"/user/1")
+        console.log(response.data);
+        const {name, user_name, email,date_of_birth,mode} = response.data;
+        setUserInfo(response.data)
+        setName(name);
+        setUsername(user_name);
+        setEmail(email);
+        setDateOfBirth(date_of_birth);
+        setMode(mode);
+    } catch (err) {
+        console.log(`Error: ${err.message}`);
+    }
+  };
+
+  useEffect(()=>{
+    getUserInfo();
+  },[]);
+
+  if(!userInfo){
+    return;
+  }
 
   const initialValues = {
-    name: "",
-    username: "",
-    email: "",
-    dateOfBirth: "",
-    mode: "",
+    name:name,
+    username: username ,
+    email: email,
+    dateOfBirth: dateOfBirth,
+    mode: mode.toLocaleLowerCase(),
   };
   const validationSchema = Yup.object().shape({
     name: Yup.string().required("Name is required"),
@@ -100,10 +129,10 @@ const Profile = () => {
             <Field
               className="setting__input setting__input--select"
               component="select"
+              type="text"
               id="mode"
               name="mode"
             >
-              <option value="">Select Mode</option>
               <option value="maintaining">Maintaining</option>
               <option value="bulking">Bulking</option>
               <option value="cutting">Cutting</option>
