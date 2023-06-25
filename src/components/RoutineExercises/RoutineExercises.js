@@ -4,10 +4,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import NewExerciseCard from "../NewExerciseCard/NewExerciseCard";
 import { Link } from "react-router-dom";
-import { Formik, Field, Form, ErrorMessage, FieldArray } from "formik";
-import RemoveIcon from "../../assets/icons/remove.svg";
-import CompleteIcon from "../../assets/icons/complete.svg";
-import AddIcon from "../../assets/icons/add.svg";
+import { Formik, Field, Form, FieldArray } from "formik";
 
 const RoutineExercises = ({ routineId }) => {
   const [routineDetails, setRoutineDetails] = useState(null);
