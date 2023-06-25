@@ -1,2 +1,10 @@
 @use "../../styles/partials/typography";
 @use "../../styles/partials/variables" as *;
+
+.setting{
+    &__profile{
+        background-color: $primary-color-2;
+        padding: 1.6rem;
+        border-radius: 1rem;
+        box-shadow: 0 0.5rem 0.9rem -0.1rem rgba(196, 193, 193, 0.25);    }
+}
