@@ -5,5 +5,8 @@
 .header{
     padding: 2.4rem 1.6rem;
     text-align: center;
+    &__subtitle{
+        color: $primary-color-2;
+    }
 
 }
