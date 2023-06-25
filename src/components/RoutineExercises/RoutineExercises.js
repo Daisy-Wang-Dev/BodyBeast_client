@@ -42,7 +42,7 @@ const RoutineExercises = ({ routineId }) => {
   };
 
   if (!routineDetails) {
-    return <h1 className="loading">Data Loading</h1>;
+    return <h1 className="loading">DATA LOADING...</h1>;
   }
 
   return (

@@ -21,7 +21,7 @@ const PerformanceStat = () => {
   }, []);
 
   if (!exerciseData) {
-    return <h1 className="loading">Loading Data</h1>;
+    return <h1 className="loading">DATA LOADING...</h1>;
   }
   return (
     <section className="performance-stats">

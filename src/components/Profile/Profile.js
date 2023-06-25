@@ -11,43 +11,45 @@ const Profile = () => {
   const [email, setEmail] = useState("");
   const [dateOfBirth, setDateOfBirth] = useState("");
   const [mode, setMode] = useState("");
+  const [isSubmitted, setIsSubmitted] = useState(false);
 
   const getUserInfo = async () => {
     try {
-        const response = await axios.get(process.env.REACT_APP_API_URL+"/user/1")
-        console.log(response.data);
-        const {name, user_name, email,date_of_birth,mode} = response.data;
-        setUserInfo(response.data)
-        setName(name);
-        setUsername(user_name);
-        setEmail(email);
-        setDateOfBirth(date_of_birth);
-        setMode(mode);
+      const response = await axios.get(
+        process.env.REACT_APP_API_URL + "/user/1"
+      );
+      const { name, user_name, email, date_of_birth, mode } = response.data;
+      setUserInfo(response.data);
+      setName(name);
+      setUsername(user_name);
+      setEmail(email);
+      setDateOfBirth(date_of_birth);
+      setMode(mode);
     } catch (err) {
-        console.log(`Error: ${err.message}`);
+      console.log(`Error: ${err.message}`);
     }
   };
 
-  useEffect(()=>{
+  useEffect(() => {
     getUserInfo();
-  },[]);
+  }, []);
 
-  if(!userInfo){
-    return;
+  if (!userInfo) {
+    return <h1 className="loading">DATA LOADING...</h1>;
   }
 
   const initialValues = {
-    name:name,
-    username: username ,
+    name: name,
+    user_name: username,
     email: email,
-    dateOfBirth: dateOfBirth,
+    date_of_birth: dateOfBirth,
     mode: mode.toLocaleLowerCase(),
   };
   const validationSchema = Yup.object().shape({
     name: Yup.string().required("Name is required"),
-    username: Yup.string().required("username is required"),
+    user_name: Yup.string().required("username is required"),
     email: Yup.string().email("Invalid email").required("Email is required"),
-    dateOfBirth: Yup.string()
+    date_of_birth: Yup.string()
       .required("Date of Birth is required")
       .matches(
         /^\d{4}-\d{2}-\d{2}$/,
@@ -60,9 +62,26 @@ const Profile = () => {
       .oneOf(["maintaining", "bulking", "cutting"])
       .required("Mode is required"),
   });
+
+  const handleSubmit = async (values) => {
+    try {
+      
+      await axios.put(process.env.REACT_APP_API_URL + "/user/1", values);
+      setIsSubmitted(true);
+      
+    } catch (err) {
+      console.log(`Error: ${err.message}`);
+    }
+  };
+
+
   return (
     <section className="setting__profile">
-      <Formik initialValues={initialValues} validationSchema={validationSchema}>
+      <Formik
+        initialValues={initialValues}
+        validationSchema={validationSchema}
+        onSubmit={(values) => handleSubmit(values)}
+      >
         <Form className="setting__profile-form">
           <div className="setting__container">
             <label htmlFor="name">Name</label>
@@ -80,16 +99,16 @@ const Profile = () => {
           </div>
 
           <div className="setting__container">
-            <label htmlFor="username">Username</label>
+            <label htmlFor="user_name">Username</label>
             <Field
               className="setting__input"
               type="text"
-              id="username"
-              name="username"
+              id="user_name"
+              name="user_name"
             />
             <ErrorMessage
               className="setting__error"
-              name="username"
+              name="user_name"
               component="div"
             ></ErrorMessage>
           </div>
@@ -110,16 +129,16 @@ const Profile = () => {
           </div>
 
           <div className="setting__container">
-            <label htmlFor="dateOfBirth">Date of Birth</label>
+            <label htmlFor="date_of_birth">Date of Birth</label>
             <Field
               className="setting__input"
               type="text"
-              id="dateOfBirth"
-              name="dateOfBirth"
+              id="date_of_birth"
+              name="date_of_birth"
             />
             <ErrorMessage
               className="setting__error"
-              name="dateOfBirth"
+              name="date_of_birth"
               component="div"
             ></ErrorMessage>
           </div>
@@ -151,6 +170,9 @@ const Profile = () => {
               Delete Account
             </button>
           </div>
+          {isSubmitted && (
+            <h3 className="setting__message">Profile Updated Successfully!</h3>
+          )}
         </Form>
       </Formik>
     </section>

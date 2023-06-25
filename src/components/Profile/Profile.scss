@@ -44,6 +44,10 @@
       color: #999;
     }
   }
+  &__message{
+    text-align: center;
+    color: $supporting-color-2;
+  }
 }
 
 select {

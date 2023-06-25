@@ -22,7 +22,7 @@ const RoutineList = () => {
   }, []);
 
   if (!routines) {
-    return <h1 className="loading">Loading Data</h1>;
+    return <h1 className="loading">DATA LOADING...</h1>;
   }
 
   return routines.map((routine) => {
