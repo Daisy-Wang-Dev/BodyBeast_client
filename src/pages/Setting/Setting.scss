@@ -1,7 +1,9 @@
 @use "../../styles/partials/typography";
 @use "../../styles/partials/variables" as *;
 
-.setting{
-    
+.setting{ 
     padding: 2.4rem 1.6rem;
+    &__title{
+        padding-bottom: 1.6rem;
+    }
 }

@@ -4,6 +4,9 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 
 const Profile = () => {
+  const [name, setName] = useState("");
+  const [username, setUsername] = useState("");
+
   const initialValues = {
     name: "",
     username: "",
@@ -95,7 +98,7 @@ const Profile = () => {
           <div className="setting__container">
             <label htmlFor="mode">Mode</label>
             <Field
-              className="setting__input"
+              className="setting__input setting__input--select"
               component="select"
               id="mode"
               name="mode"
@@ -111,12 +114,14 @@ const Profile = () => {
               component="div"
             ></ErrorMessage>
           </div>
-          <button className="setting__btn setting__btn--update" type="submit">
-            Update Profile
-          </button>
-          <button className="setting__btn setting__btn--delete" type="button">
-            Delete Account
-          </button>
+          <div className="setting__btns">
+            <button className="setting__btn setting__btn--update" type="submit">
+              Update Profile
+            </button>
+            <button className="setting__btn setting__btn--delete" type="button">
+              Delete Account
+            </button>
+          </div>
         </Form>
       </Formik>
     </section>
