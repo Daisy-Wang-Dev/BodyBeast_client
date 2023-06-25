@@ -10,8 +10,6 @@ const Header = () => {
 
   // Today
   const Today = new Date();
-  // Mode start day
-  let startDay;
 
   const getUserInfo = async () => {
     try {

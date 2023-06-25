@@ -5,6 +5,7 @@ import HomePage from "./pages/HomePage/HomePage";
 import Routines from "./pages/Routines/Routines";
 import RoutineDetails from "./pages/RoutineDetails/RoutineDetails";
 import Setting from "./pages/Setting/Setting";
+import History from "./pages/History/History";
 
 function App() {
   return (
@@ -15,8 +16,8 @@ function App() {
             <Route path="/routines" element={<Routines/>}/>
             <Route path="/routines/:routineId" element={<RoutineDetails/>}/>
             <Route path="/setting" element={<Setting/>}/>
-
-
+            <Route path="/histories" element={<History/>}/>
+            
           </Routes>
         <MenuBar/>
       </BrowserRouter>
