@@ -11,7 +11,6 @@ const History = () => {
       const response = await axios.get(
         process.env.REACT_APP_API_URL + "/user/1/history"
       );
-      console.log(response.data);
       setHistories(response.data);
     } catch (err) {
       console.log(`Error: ${err.message}`);
