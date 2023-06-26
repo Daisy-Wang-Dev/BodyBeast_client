@@ -65,7 +65,7 @@ const RoutineExercises = ({ routineId }) => {
 
     try {
       
-        await axios.post(process.env.REACT_APP_API_URL+"/1/routine", postedData);
+        await axios.post(process.env.REACT_APP_API_URL+"/user/1/routine", postedData);
         setIsSubmitted(true);
     } catch (err) {
       console.log(`Error: ${err.message}`);

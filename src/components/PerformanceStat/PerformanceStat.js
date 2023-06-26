@@ -25,10 +25,9 @@ const PerformanceStat = () => {
   return (
     <section className="performance-stats">
       <h1 className="performance-stats__title">PERFORMANCE STATS</h1>
-      {exerciseData.map((exercise,index) => (
+      {exerciseData.map((exercise, index) => (
         <PerformanceCard key={index} exercise={exercise} />
       ))}
-
     </section>
   );
 };
