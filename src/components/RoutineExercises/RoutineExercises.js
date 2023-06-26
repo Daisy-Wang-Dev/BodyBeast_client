@@ -10,6 +10,8 @@ const RoutineExercises = ({ routineId }) => {
   const [routineDetails, setRoutineDetails] = useState(null);
   const [routineName, setRoutineName] = useState("");
   const [exercises, setExercises] = useState([]);
+  // Indicate successful submission 
+  const [isSubmitted, setIsSubmitted] = useState(false);
 
   const getRoutineDetails = async () => {
     try {
@@ -31,14 +33,19 @@ const RoutineExercises = ({ routineId }) => {
   }, []);
 
   const HandleSubmit = async (values) => {
-    // const postedData =
+    const {routineName, exercises, newExercises} = values;
+    const allExercises = exercises.concat(newExercises);
+    const postedData = {routineName, exercises: allExercises};
     console.log(values);
-    // try{
-    //   await axios.post(process.env.REACT_APP_API_URL+)
+    console.log(postedData);
+     
+    try{
+      await axios.post(process.env.REACT_APP_API_URL+"/1/routine", postedData);
+      setIsSubmitted(true);
 
-    // }catch(err){
-    //   console.log(`Error: ${error.message}`);
-    // }
+    }catch(err){
+      console.log(`Error: ${err.message}`);
+    }
   };
 
   if (!routineDetails) {
@@ -59,10 +66,8 @@ const RoutineExercises = ({ routineId }) => {
             sets: [{ weight: "", reps: "" }],
           })),
         }}
-        onSubmit={async (values) => {
-          await new Promise((r) => setTimeout(r, 500));
-          console.log(JSON.stringify(values, null, 2));
-        }}
+        onSubmit={(values)=>HandleSubmit(values)}
+    
       >
         {({ values }) => (
           <Form className="training__form">
@@ -86,86 +91,6 @@ const RoutineExercises = ({ routineId }) => {
                   </>
                 )}
               </FieldArray>
-              {/* <FieldArray name="exercises">
-                {() => (
-                  <>
-                    {values.exercises.map((exercise, index) => (
-                      // <ExerciseCard
-                      //   key={index}
-                      //   index={index}
-                      // />
-                      <article key={index} className="training__exercise">
-                        <Field
-                          className="training__name"
-                          name={`exercises.${index}.exercise_name`}
-                          placeholder="New Exercise"
-                          type="text"
-                        />
-                        <ErrorMessage
-                          name={`exercises.${index}.exercise_name`}
-                          component="div"
-                          className="field-error"
-                        />
-                        <div className="training__inputs">
-                          <div className="training__input-headers">
-                            <h4 className="training__input-header">kg</h4>
-                            <h4 className="training__input-header">reps</h4>
-                            <h4 className="training__input-header">
-                              completed
-                            </h4>
-                            <h4 className="training__input-header">remove</h4>
-                            <h4 className="training__input-header">add</h4>
-                          </div>
-                          <FieldArray name={`exercises.${index}.sets`}>
-                            {({ remove, push }) => (
-                              <>
-                                {values.exercises[index].sets.map((_, idx) => (
-                                  <div
-                                    key={idx}
-                                    className="training__input-fields"
-                                  >
-                                    <Field
-                                      className="training__input"
-                                      type="number"
-                                      name={`exercises.${index}.sets.${idx}.weight`}
-                                    />
-                                    <Field
-                                      className="training__input"
-                                      type="number"
-                                      name={`exercises.${index}.sets.${idx}.reps`}
-                                    />
-                                    <div className="training__icon">
-                                      <img
-                                        className="training__completed"
-                                        src={CompleteIcon}
-                                        alt="Completed exercise"
-                                      />
-                                    </div>
-                                    <div className="training__icon">
-                                      <img
-                                        src={RemoveIcon}
-                                        alt="Remove exercise"
-                                        onClick={()=>remove({ weight: "", reps: "" })}
-                                      />
-                                    </div>
-                                    <div className="training__icon">
-                                      <img
-                                        src={AddIcon}
-                                        alt="Remove exercise"
-                                        onClick={()=>push({ weight: "", reps: "" })}
-                                      />
-                                    </div>
-                                  </div>
-                                ))}
-                              </>
-                            )}
-                          </FieldArray>
-                        </div>
-                      </article>
-                    ))}
-                  </>
-                )}
-              </FieldArray> */}
               <FieldArray name="newExercises">
                 {({ push }) => (
                   <>
@@ -196,6 +121,9 @@ const RoutineExercises = ({ routineId }) => {
                 CANCEL
               </Link>
             </div>
+            {isSubmitted && (
+            <h2 className="training__message">🎉 Well Done & Keep Smashing 🎉</h2>
+          )}
           </Form>
         )}
       </Formik>
