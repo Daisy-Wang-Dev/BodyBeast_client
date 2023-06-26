@@ -10,29 +10,6 @@ import {
 
 const PerformanceCard = ({ exercise }) => {
     const {exercise_name, volume_data} = exercise;
-  // Mock data for bicep curls 
-//   const volume_data = [
-//     {
-//       total_volume: 360,
-//       created_at: "2023-06-20",
-//     },
-//     {
-//       total_volume: 360,
-//       created_at: "2023-06-22",
-//     },
-//     {
-//       total_volume: 370,
-//       created_at: "2023-06-24",
-//     },
-//     {
-//       total_volume: 376,
-//       created_at: "2023-06-28",
-//     },
-//     {
-//       total_volume: 376,
-//       created_at: "2023-06-30",
-//     },
-//   ];
 
   return (
     <article className="performance">
