@@ -20,9 +20,9 @@ const TrainingDetails = ({ historyDetails }) => {
           </div>
           {exercise.sets.map((set, idx) => (
             <div key={idx} className="history-details__data">
-              <p className="history-details__table-header">{set.weight}</p>
-              <p className="history-details__table-header">{set.rep}</p>
-              <p className="history-details__table-header">{set.volume}</p>
+              <p className="history-details__table-header">{set.weight}kg</p>
+              <p className="history-details__table-header">{set.reps}</p>
+              <p className="history-details__table-header">{set.volume}kg</p>
             </div>
           ))}
         </div>

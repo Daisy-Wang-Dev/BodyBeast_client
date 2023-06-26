@@ -18,7 +18,7 @@
     color: #000000;
    
   }
-  &__container{
+  &__container, &__data{
     display: flex;
     width: 70%;
     justify-content: space-between;
@@ -26,4 +26,6 @@
   &__table-header{
     width: 3.6rem;
   }
+
+
 }
