@@ -1,16 +1,20 @@
 import "./RoutineExercises.scss";
-import ExerciseCard from "../ExerciseCard/ExerciseCard"
+import ExerciseCard from "../ExerciseCard/ExerciseCard";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import NewExerciseCard from "../NewExerciseCard/NewExerciseCard";
 import { Link } from "react-router-dom";
 import { Formik, Field, Form, FieldArray } from "formik";
+import * as Yup from "yup";
 
 const RoutineExercises = ({ routineId }) => {
   const [routineDetails, setRoutineDetails] = useState(null);
   const [routineName, setRoutineName] = useState("");
   const [exercises, setExercises] = useState([]);
-  // Indicate successful submission 
+  const [isError, setIsError] = useState(false);
+  const [isEmptyName, setIsEmptyName] = useState(false);
+
+  // Indicate successful submission
   const [isSubmitted, setIsSubmitted] = useState(false);
 
   const getRoutineDetails = async () => {
@@ -32,18 +36,40 @@ const RoutineExercises = ({ routineId }) => {
     getRoutineDetails();
   }, []);
 
+  const validationSchema = Yup.object().shape({
+    routineName: Yup.string().required("Routine Name is required"),
+  });
+
+  const validate = (value) => {
+    let error;
+    if (!value) {
+      setIsError(true);
+      error = "!";
+    }
+    return error;
+  };
+
+  const validateName = (value) => {
+    let error;
+    if (!value) {
+      setIsEmptyName(true);
+      error = "!";
+    }
+    return error;
+  };
+
   const HandleSubmit = async (values) => {
-    const {routineName, exercises, newExercises} = values;
+    const { routineName, exercises, newExercises } = values;
     const allExercises = exercises.concat(newExercises);
-    const postedData = {routineName, exercises: allExercises};
+    const postedData = { routineName, exercises: allExercises };
     console.log(values);
     console.log(postedData);
-     
-    try{
-      await axios.post(process.env.REACT_APP_API_URL+"/1/routine", postedData);
-      setIsSubmitted(true);
 
-    }catch(err){
+    try {
+      if (validate && validateName)
+        // await axios.post(process.env.REACT_APP_API_URL+"/1/routine", postedData);
+        setIsSubmitted(true);
+    } catch (err) {
       console.log(`Error: ${err.message}`);
     }
   };
@@ -66,8 +92,8 @@ const RoutineExercises = ({ routineId }) => {
             sets: [{ weight: "", reps: "" }],
           })),
         }}
-        onSubmit={(values)=>HandleSubmit(values)}
-    
+        validationSchema={validationSchema}
+        onSubmit={(values) => HandleSubmit(values)}
       >
         {({ values }) => (
           <Form className="training__form">
@@ -81,13 +107,17 @@ const RoutineExercises = ({ routineId }) => {
             </div>
             <div className="training__body-container">
               <FieldArray name="exercises">
-                {()=>(
+                {() => (
                   <>
-                  {
-                    values.exercises.map((exercise,index)=>(
-                        <ExerciseCard key={index} index={index} values={values}/>
-                    ))
-                  }
+                    {values.exercises.map((exercise, index) => (
+                      <ExerciseCard
+                        key={index}
+                        index={index}
+                        values={values}
+                        validate={validate}
+                        validateName={validateName}
+                      />
+                    ))}
                   </>
                 )}
               </FieldArray>
@@ -95,12 +125,21 @@ const RoutineExercises = ({ routineId }) => {
                 {({ push }) => (
                   <>
                     {values.newExercises.map((new_exercise, index) => (
-                      <NewExerciseCard key={index} index={index} values={values} />
+                      <NewExerciseCard
+                        key={index}
+                        index={index}
+                        values={values}
+                        validate={validate}
+                        validateName={validateName}
+                      />
                     ))}
                     <h3
                       className="training__add"
                       onClick={() =>
-                        push({ exercise_name: "", sets: [{ weight: "", reps: "" }] })
+                        push({
+                          exercise_name: "",
+                          sets: [{ weight: "", reps: "" }],
+                        })
                       }
                     >
                       + EXERCISE
@@ -122,8 +161,11 @@ const RoutineExercises = ({ routineId }) => {
               </Link>
             </div>
             {isSubmitted && (
-            <h2 className="training__message">🎉 Well Done & Keep Smashing 🎉</h2>
-          )}
+              <h2 className="training__message">
+                🎉 Well Done & Keep Smashing 🎉
+              </h2>
+            )}
+            {isError && <h2 className="training__message--error">Smash some weights and reps in ! </h2>}
           </Form>
         )}
       </Formik>

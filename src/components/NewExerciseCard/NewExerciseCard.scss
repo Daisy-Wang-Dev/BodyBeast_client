@@ -29,8 +29,10 @@
     &:focus {
       outline: none;
       border: 2px solid grey;
-    }
-   
+    } 
+  }
+  &__error{
+    color: red;
   }
   &__icon {
     width: 5.2rem;

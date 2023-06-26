@@ -77,9 +77,13 @@ input {
       text-align: center;
     }
   }
-  &__message{
+  &__message {
     color: $primary-color-2;
     width: 100%;
     text-align: center;
+    &--error {
+      color: #fa374e;
+      text-align: center;
+    }
   }
 }

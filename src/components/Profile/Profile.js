@@ -58,9 +58,6 @@ const Profile = () => {
     mode: Yup.string()
       .oneOf(["maintaining", "bulking", "cutting"])
       .required("Mode is required"),
-    mode: Yup.string()
-      .oneOf(["maintaining", "bulking", "cutting"])
-      .required("Mode is required"),
   });
 
   const handleSubmit = async (values) => {

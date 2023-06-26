@@ -1,14 +1,12 @@
 import RemoveIcon from "../../assets/icons/remove.svg";
-import CompleteIcon from "../../assets/icons/complete.svg";
 import AddIcon from "../../assets/icons/add.svg";
 import { useState } from "react";
 import "./NewExerciseCard.scss";
 import { Field, ErrorMessage, FieldArray } from "formik";
-import * as React from 'react';
-import Checkbox from '@mui/material/Checkbox';
+import * as React from "react";
+import Checkbox from "@mui/material/Checkbox";
 
-
-const NewExerciseCard = ({ index, values }) => {
+const NewExerciseCard = ({ index, values, validate, validateName }) => {
   //Completed a set
   const [isCompletedRow, setCompletedRow] = useState({});
 
@@ -23,11 +21,12 @@ const NewExerciseCard = ({ index, values }) => {
         type="text"
         name={`newExercises.${index}.exercise_name`}
         placeholder="New Exercise"
+        validate={validateName}
       />
       <ErrorMessage
         name={`newExercises.${index}.exercise_name`}
-        component="div"
-        className="field-error"
+        component="span"
+        className="training__error"
       />
       <div className="training__inputs">
         <div className="training__input-headers">
@@ -52,26 +51,32 @@ const NewExerciseCard = ({ index, values }) => {
                   className="training__input"
                   type="number"
                   name={`newExercises.${index}.sets.${idx}.weight`}
+                  validate={validate}
                 />
                 <ErrorMessage
                   name={`newExercises.${index}.sets.${idx}.weight`}
-                  component="div"
-                  className="field-error"
+                  component="span"
+                  className="training__error"
                 />
                 <Field
                   className="training__input"
                   type="number"
                   name={`newExercises.${index}.sets.${idx}.reps`}
+                  validate={validate}
                 />
                 <ErrorMessage
                   name={`newExercises.${index}.sets.${idx}.reps`}
-                  component="div"
-                  className="field-error"
+                  component="span"
+                  className="training__error"
                 />
                 <div className="training__icon">
-                  <Checkbox className="training__checkbox" color="success" onClick={() => {
+                  <Checkbox
+                    className="training__checkbox"
+                    color="success"
+                    onClick={() => {
                       handleCompleteClick(idx);
-                    }}/>
+                    }}
+                  />
                 </div>
                 <div className="training__icon">
                   <img
