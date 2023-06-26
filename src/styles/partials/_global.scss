@@ -46,5 +46,7 @@ p{
 }
 
 main{
-  overflow-y: scroll;
+  position: relative;
+  min-height: 100vh;
+  margin-bottom: 16rem;
 }

@@ -67,6 +67,7 @@ const RoutineExercises = ({ routineId }) => {
 
     try {
       if (validate && validateName)
+      
         // await axios.post(process.env.REACT_APP_API_URL+"/1/routine", postedData);
         setIsSubmitted(true);
     } catch (err) {
