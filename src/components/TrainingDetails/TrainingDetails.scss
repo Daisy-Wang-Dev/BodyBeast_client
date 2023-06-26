@@ -1,0 +1,29 @@
+@use "../../styles/partials/typography";
+@use "../../styles/partials/variables" as *;
+
+.history-details {
+  &__card {
+    background-color: $primary-color-2;
+    border-radius: 1rem;
+    box-shadow: 0 0.5rem 0.9rem -0.1rem rgba(196, 193, 193, 0.25);
+    width: 100%;
+    padding: 1.6rem;
+  }
+
+  &__title-container {
+    display: flex;
+    justify-content: space-between;
+  }
+  &__title {
+    color: #000000;
+   
+  }
+  &__container{
+    display: flex;
+    width: 70%;
+    justify-content: space-between;
+  }
+  &__table-header{
+    width: 3.6rem;
+  }
+}

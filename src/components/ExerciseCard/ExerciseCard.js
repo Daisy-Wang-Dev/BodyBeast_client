@@ -1,5 +1,4 @@
 import RemoveIcon from "../../assets/icons/remove.svg";
-import CompleteIcon from "../../assets/icons/complete.svg";
 import AddIcon from "../../assets/icons/add.svg";
 import { useState } from "react";
 import "./ExerciseCard.scss";
