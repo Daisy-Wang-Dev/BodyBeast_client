@@ -11,8 +11,6 @@ const RoutineExercises = ({ routineId }) => {
   const [routineDetails, setRoutineDetails] = useState(null);
   const [routineName, setRoutineName] = useState("");
   const [exercises, setExercises] = useState([]);
-  const [isError, setIsError] = useState(false);
-  const [isEmptyName, setIsEmptyName] = useState(false);
 
   // Indicate successful submission
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -43,7 +41,6 @@ const RoutineExercises = ({ routineId }) => {
   const validate = (value) => {
     let error;
     if (!value) {
-      setIsError(true);
       error = "!";
     }
     return error;
@@ -52,7 +49,6 @@ const RoutineExercises = ({ routineId }) => {
   const validateName = (value) => {
     let error;
     if (!value) {
-      setIsEmptyName(true);
       error = "!";
     }
     return error;
@@ -92,10 +88,6 @@ const RoutineExercises = ({ routineId }) => {
         }}
         validationSchema={validationSchema}
         onSubmit={(values) => HandleSubmit(values)}
-        // onSubmit={async (values) => {
-        //   await new Promise((r) => setTimeout(r, 500));
-        //  console.log(JSON.stringify(values, null, 2));
-        // }}
       >
         {({ values }) => (
           <Form className="training__form">
@@ -167,7 +159,6 @@ const RoutineExercises = ({ routineId }) => {
                 🎉 Well Done & Keep Smashing 🎉
               </h2>
             )}
-            {(isError || isEmptyName) ? <h2 className="training__message--error">Smash some weights and reps in ! </h2> : <h2></h2>}
           </Form>
         )}
       </Formik>

@@ -7,6 +7,7 @@ import RoutineDetails from "./pages/RoutineDetails/RoutineDetails";
 import Setting from "./pages/Setting/Setting";
 import History from "./pages/History/History";
 import HistoryDetails from "./pages/HistoryDetails/HistoryDetails";
+import NewRoutine from "./pages/NewRoutine/NewRoutine";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/routines" element={<Routines />} />
+          <Route path="/routines/new" element={<NewRoutine />} />
           <Route path="/routines/:routineId" element={<RoutineDetails />} />
           <Route path="/setting" element={<Setting />} />
           <Route path="/histories" element={<History />} />
