@@ -10,7 +10,6 @@ const PerformanceStat = () => {
       const response = await axios.get(
         process.env.REACT_APP_API_URL + "/user/1/exercises"
       );
-    //   console.log(response);
       setExerciseData(response.data);
     } catch (err) {
       console.log(`Error: ${err.message}`);
@@ -26,11 +25,10 @@ const PerformanceStat = () => {
   return (
     <section className="performance-stats">
       <h1 className="performance-stats__title">PERFORMANCE STATS</h1>
-      {exerciseData.map((exercise) => (
-        <PerformanceCard key={exercise.exercise_name} exercise={exercise} />
+      {exerciseData.map((exercise,index) => (
+        <PerformanceCard key={index} exercise={exercise} />
       ))}
 
-      {/* <PerformanceCard /> */}
     </section>
   );
 };

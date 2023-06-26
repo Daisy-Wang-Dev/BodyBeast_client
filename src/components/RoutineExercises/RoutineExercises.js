@@ -62,13 +62,10 @@ const RoutineExercises = ({ routineId }) => {
     const { routineName, exercises, newExercises } = values;
     const allExercises = exercises.concat(newExercises);
     const postedData = { routineName, exercises: allExercises };
-    console.log(values);
-    console.log(postedData);
 
     try {
-      if (validate && validateName)
       
-        // await axios.post(process.env.REACT_APP_API_URL+"/1/routine", postedData);
+        await axios.post(process.env.REACT_APP_API_URL+"/1/routine", postedData);
         setIsSubmitted(true);
     } catch (err) {
       console.log(`Error: ${err.message}`);
@@ -95,6 +92,10 @@ const RoutineExercises = ({ routineId }) => {
         }}
         validationSchema={validationSchema}
         onSubmit={(values) => HandleSubmit(values)}
+        // onSubmit={async (values) => {
+        //   await new Promise((r) => setTimeout(r, 500));
+        //  console.log(JSON.stringify(values, null, 2));
+        // }}
       >
         {({ values }) => (
           <Form className="training__form">
@@ -166,7 +167,7 @@ const RoutineExercises = ({ routineId }) => {
                 🎉 Well Done & Keep Smashing 🎉
               </h2>
             )}
-            {isError && <h2 className="training__message--error">Smash some weights and reps in ! </h2>}
+            {(isError || isEmptyName) ? <h2 className="training__message--error">Smash some weights and reps in ! </h2> : <h2></h2>}
           </Form>
         )}
       </Formik>
