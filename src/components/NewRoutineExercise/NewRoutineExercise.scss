@@ -1,0 +1,10 @@
+@use "../../styles/partials/typography";
+@use "../../styles/partials/variables" as *;
+
+.training{
+    &__title{
+        &::placeholder{
+            color: $primary-color-1;
+        }
+    }
+}
