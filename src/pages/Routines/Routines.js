@@ -12,7 +12,9 @@ const Routines = () => {
             <h3 className="routines__add">+ NEW</h3>
           </Link>
         </div>
-        <RoutineList />
+        <div className="routines__cards">
+          <RoutineList />
+        </div>
       </section>
     </main>
   );

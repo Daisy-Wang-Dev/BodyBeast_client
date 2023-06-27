@@ -14,4 +14,8 @@
     &__add{
         color: $primary-color-2;
     }
+    &__cards{
+        display: flex;
+        justify-content: space-between;
+    }
 }
