@@ -19,8 +19,10 @@ const PerformanceCard = ({ exercise }) => {
       </div>
       <ResponsiveContainer width="100%" height="90%">
         <LineChart
-          width={310}
-          height={150}
+          // width={500}
+          width={250}
+          height={80}
+          // height={150}
           data={volume_data}
           margin={{
             top: 20,
