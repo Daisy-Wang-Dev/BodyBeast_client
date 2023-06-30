@@ -29,13 +29,6 @@ const ExerciseCard = ({ index, values, validate, validateName }) => {
         className="training__error"
       />
       <div className="training__inputs">
-        {/* <div className="training__input-headers">
-          <h4 className="training__input-header">kg</h4>
-          <h4 className="training__input-header">reps</h4>
-          <h4 className="training__input-header">completed</h4>
-          <h4 className="training__input-header">remove</h4>
-          <h4 className="training__input-header">add</h4>
-        </div> */}
         <FieldArray name={`exercises.${index}.sets`}>
           {({ remove, push }) => (
             <>
