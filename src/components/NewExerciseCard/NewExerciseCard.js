@@ -1,5 +1,4 @@
 import RemoveIcon from "../../assets/icons/remove.svg";
-import AddIcon from "../../assets/icons/add.svg";
 import { useState } from "react";
 import "./NewExerciseCard.scss";
 import { Field, ErrorMessage, FieldArray } from "formik";
