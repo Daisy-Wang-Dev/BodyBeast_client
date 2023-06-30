@@ -6,7 +6,7 @@ import { Field, ErrorMessage, FieldArray } from "formik";
 import * as React from "react";
 import Checkbox from "@mui/material/Checkbox";
 
-const ExerciseCard = ({ index, values, validate, validateName }) => {
+const ExerciseCard = ({ index, values, validate, validateName, remove }) => {
   //   //Completed a set
   const [isCompletedRow, setCompletedRow] = useState({});
 
@@ -28,6 +28,9 @@ const ExerciseCard = ({ index, values, validate, validateName }) => {
         component="div"
         className="training__error"
       />
+      <h4 onClick={() => remove(index)} className="training__remove-exercise">
+        X
+      </h4>
       <div className="training__inputs">
         <FieldArray name={`exercises.${index}.sets`}>
           {({ remove, push }) => (
@@ -37,10 +40,12 @@ const ExerciseCard = ({ index, values, validate, validateName }) => {
                 <h4 className="training__input-header">reps</h4>
                 <h4 className="training__input-header">completed</h4>
                 <h4 className="training__input-header">remove</h4>
-                <h4
+                <h3
                   className="training__input-header training__input-header--add"
                   onClick={() => push({ weight: "", reps: "" })}
-                >+ set</h4>
+                >
+                  + set
+                </h3>
               </div>
 
               {values.exercises[index].sets.map((_, idx) => (

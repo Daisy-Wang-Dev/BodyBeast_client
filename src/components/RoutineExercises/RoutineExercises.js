@@ -60,9 +60,11 @@ const RoutineExercises = ({ routineId }) => {
     const postedData = { routineName, exercises: allExercises };
 
     try {
-      
-        await axios.post(process.env.REACT_APP_API_URL+"/user/1/routine", postedData);
-        setIsSubmitted(true);
+      await axios.post(
+        process.env.REACT_APP_API_URL + "/user/1/routine",
+        postedData
+      );
+      setIsSubmitted(true);
     } catch (err) {
       console.log(`Error: ${err.message}`);
     }
@@ -101,7 +103,7 @@ const RoutineExercises = ({ routineId }) => {
             </div>
             <div className="training__body-container">
               <FieldArray name="exercises">
-                {() => (
+                {({ remove }) => (
                   <>
                     {values.exercises.map((exercise, index) => (
                       <ExerciseCard
@@ -110,13 +112,14 @@ const RoutineExercises = ({ routineId }) => {
                         values={values}
                         validate={validate}
                         validateName={validateName}
+                        remove={remove}
                       />
                     ))}
                   </>
                 )}
               </FieldArray>
               <FieldArray name="newExercises">
-                {({ push }) => (
+                {({ push, remove }) => (
                   <>
                     {values.newExercises.map((new_exercise, index) => (
                       <NewExerciseCard
@@ -125,6 +128,7 @@ const RoutineExercises = ({ routineId }) => {
                         values={values}
                         validate={validate}
                         validateName={validateName}
+                        remove={remove}
                       />
                     ))}
                     <h3
