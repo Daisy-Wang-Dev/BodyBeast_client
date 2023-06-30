@@ -75,7 +75,7 @@ const NewRoutineExercise = () => {
                 </div>
                 <div className="training__body-container">
                   <FieldArray name="newExercises">
-                    {({ push }) => (
+                    {({ push, remove }) => (
                       <>
                         {values.newExercises.map((new_exercise, index) => (
                           <NewExerciseCard
@@ -84,6 +84,7 @@ const NewRoutineExercise = () => {
                             values={values}
                             validate={validate}
                             validateName={validateName}
+                            remove={remove}
                           />
                         ))}
                         <h3
