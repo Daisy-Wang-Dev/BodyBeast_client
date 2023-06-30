@@ -29,17 +29,21 @@ const NewExerciseCard = ({ index, values, validate, validateName }) => {
         className="training__error"
       />
       <div className="training__inputs">
-        <div className="training__input-headers">
-          <h4 className="training__input-header">kg</h4>
-          <h4 className="training__input-header">reps</h4>
-          <h4 className="training__input-header">completed</h4>
-          <h4 className="training__input-header">remove</h4>
-          <h4 className="training__input-header">add</h4>
-        </div>
-
         <FieldArray name={`newExercises.${index}.sets`}>
-          {({ remove, push }) =>
-            values.newExercises[index].sets.map((_, idx) => (
+          {({ remove, push }) => (
+            <>
+               <div className="training__input-headers">
+                <h4 className="training__input-header">kg</h4>
+                <h4 className="training__input-header">reps</h4>
+                <h4 className="training__input-header">completed</h4>
+                <h4 className="training__input-header">remove</h4>
+                <h4
+                  className="training__input-header training__input-header--add"
+                  onClick={() => push({ weight: "", reps: "" })}
+                >+ set</h4>
+              </div>
+
+            {values.newExercises[index].sets.map((_, idx) => (
               <div
                 key={idx}
                 className={`training__input-fields ${
@@ -85,16 +89,10 @@ const NewExerciseCard = ({ index, values, validate, validateName }) => {
                     onClick={() => remove({ weight: "", reps: "" })}
                   />
                 </div>
-                <div className="training__icon">
-                  <img
-                    src={AddIcon}
-                    alt="Add exercise"
-                    onClick={() => push({ weight: "", reps: "" })}
-                  />
-                </div>
               </div>
-            ))
-          }
+            ))}
+            </>
+          )}
         </FieldArray>
       </div>
     </article>
