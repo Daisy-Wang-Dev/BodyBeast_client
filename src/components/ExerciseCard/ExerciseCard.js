@@ -48,13 +48,7 @@ const ExerciseCard = ({ index, values, validate, validateName, remove }) => {
               </div>
 
               {values.exercises[index].sets.map((_, idx) => (
-                <div
-                  key={idx}
-                  className={`training__input-fields ${
-                    isCompletedRow[idx] ? "training__input-fields--active" : ""
-                  }  
-             `}
-                >
+                <div key={idx} className="training__input-fields">
                   <Field
                     className="training__input"
                     type="number"
